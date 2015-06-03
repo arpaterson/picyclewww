@@ -1,0 +1,61 @@
+h1, h2, h3 {
+ text-align: right;
+}
+
+h1 {
+ font-size: 200%;
+}
+
+h2 {
+ font-size: 150%;
+}
+
+h3 {
+ font-size: 100%;
+}
+
+body {
+ background-image: url("opuslogo.jpg");
+ background-repeat: no-repeat;
+ background-attachment: floating;
+ background-position: 5px 5px;
+ background-color: white;
+ font-size: 100%;
+}
+
+table, th, td {
+ width: 100%;
+ text-align: center;
+ margin-left: auto;
+ margin-right: auto;
+ cellpadding: 5px;
+ cellspacing: 10px;
+ border: 0;
+ 
+}
+
+button {
+ width: 95%; 
+ height: 4em;
+ background-color:grey;
+ font-size: 3em;
+ border-radius: 20px;
+}
+
+.safebutton {
+ width: 95%;
+ height: 4em;
+ background-color:green;
+ font-size: 3em;
+ border-radius: 30px;
+}
+
+.unsafebutton {
+ width: 95%;
+ height: 4em;
+ background-color: red;
+ font-size: 3em;
+ border-radius: 30px;
+}
+
+

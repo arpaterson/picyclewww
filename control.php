@@ -10,15 +10,21 @@
   }
   if (isset($_POST['StartGPS']))
   {
-  exec('sudo python /home/pi/python/gps/gps_demo.py');
+  exec('sudo python /home/pi/python/gps/gps_demo.py &');
   }
   if (isset($_POST['StartRange']))
   {
-  exec('sudo python /home/pi/python/ultrasonic/maxbotix/I2CXL/range_demo.py');
+   $command = 'sudo python /home/pi/python/ultrasonic/maxbotix/I2CXL/range_demo.py >> range.txt 2>&1 &';
+   exec($command);
+   echo 'hello';
+  }
+  if (isset($_POST['StartRadar']))
+  {
+  exec('sudo python /home/pi/python/radar/stalker/speedsensor/radar_demo.py &');
   }
   if (isset($_POST['StartCamera']))
   {
-  exec('sudo python /home/pi/python/camera/vio/viostream/VioStreamDemo.py');
+  exec('sudo python /home/pi/python/camera/vio/viostream/VioStreamDemo.py &');
   }
   if (isset($_POST['StopALL']))
   {
@@ -65,6 +71,11 @@
      </tr>
      <tr>
       <td>
+       <button class="safebutton" name="StartRadar">Start Radar Logging</button>
+      </td>
+     </tr>
+     <tr>
+      <td>
        <button class="safebutton"  name="StartCamera">Start Video Logging</button>
       </td>
      </tr>
@@ -75,7 +86,7 @@
      </tr>
      <tr>
       <td>
-       <button class="unsafebutton" name="KillALL">KILL *ALL* PYTHON PROCESSES</button>
+       <button class="unsafebutton" name="KillALL">KILL ALL PYTHON PROCESSES</button>
       </td>
      </tr>
      <tr>

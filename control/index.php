@@ -1,47 +1,56 @@
 <html>
  <head>
-  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="/../css/main.css">
  <?php 
   if (isset($_POST['StartALL']))
   {
-  exec('sudo python /home/pi/python/gps/gps_demo.py');
-  exec('sudo python /home/pi/python/ultrasonic/maxbotix/I2CXL/range_demo.py');
-  exec('sudo python /home/pi/python/camera/vio/viostream/VioStreamDemo.py');
   }
   if (isset($_POST['StartGPS']))
   {
-  exec('sudo python /home/pi/python/gps/gps_demo.py &');
+   $command = 'sudo python /home/pi/python/gpsdemo/gps_demo.py > /dev/null 2>&1 &';
+   exec($command, $output, $result);
+   echo 'Started GPS';
   }
   if (isset($_POST['StartRange']))
   {
-   $command = 'sudo python /home/pi/python/ultrasonic/maxbotix/I2CXL/range_demo.py >> range.txt 2>&1 &';
-   exec($command);
-   echo 'hello';
+   $command = 'sudo python /home/pi/python/ultrasonic/maxbotix/I2CXL/range_demo.py > /dev/null 2>&1 &';
+   exec($command, $output, $result);
+   echo 'Started Rangefinder';
   }
+
   if (isset($_POST['StartRadar']))
   {
-  exec('sudo python /home/pi/python/radar/stalker/speedsensor/radar_demo.py &');
+   $command = 'sudo python /home/pi/python/radar/stalker/speedsensor/radar_demo.py > /dev/null 2>&1 &';
+   exec($command, $output, $result);
+   echo 'Started Radar';
   }
   if (isset($_POST['StartCamera']))
   {
-  exec('sudo python /home/pi/python/camera/vio/viostream/VioStreamDemo.py &');
+   $command = 'sudo python /home/pi/python/camera/vio/viostream/VioStreamTimelapse.py > /dev/null 2>&1 &';
+   exec($command, $output, $result);
+   echo 'Started Camera';
   }
   if (isset($_POST['StopALL']))
   {
   exec('sudo');
+  echo 'Did nothing';
   }
   if (isset($_POST['KillALL']))
   {
   exec('sudo killall python');
+  echo 'Killed all python process';
   }
   if (isset($_POST['DeleteALL']))
   {
-  exec('sudo rm *.csv');
+  exec('sudo rm /var/www/logs/*.csv');
+  echo 'Deleted all csv files';
   }
   if (isset($_POST['HALT']))
   {
   exec('sudo halt');
+  echo 'System going down';
   }
+
   ?>
 
  <title>Opus Research 5-27804.00 </title>
@@ -51,55 +60,71 @@
   <h1>NZTA</h1>
   <h2>Instrumented Bicycle Control</h2>
   <h3>5-27804.00</h3>
-  <form method="post">
    <table>
     <tbody>
      <tr>
       <td>
-       <button class="safebutton" name="StartALL">Start ALL Logging</button>
+       <form method="get" action="../">
+        <button type="submit">Home</button>
+       </form>
       </td>
      </tr>
      <tr>
       <td>
-       <button class="safebutton" name="StartGPS">Start GPS Logging</button>
+  <form method="post">
+       <button class="safebutton" name="StartGPS" formnovalidate>Start GPS Logging</button>
+  </form>
       </td>
      </tr>
      <tr>
       <td>
+  <form method="post">
        <button class="safebutton" name="StartRange">Start Range Logging</button>
+  </form>
       </td>
      </tr>
      <tr>
       <td>
+  <form method="post">
        <button class="safebutton" name="StartRadar">Start Radar Logging</button>
+  </form>
       </td>
      </tr>
      <tr>
       <td>
+  <form method="post">
        <button class="safebutton"  name="StartCamera">Start Video Logging</button>
+  </form>
       </td>
      </tr>
      <tr>
       <td>
+  <form method="post">
        <button class="unsafebutton" name="StopALL">Stop ALL Logging</button>
+  </form>
       </td>
      </tr>
      <tr>
       <td>
+  <form method="post">
        <button class="unsafebutton" name="KillALL">KILL ALL PYTHON PROCESSES</button>
+  </form>
       </td>
      </tr>
      <tr>
       <td>
+  <form method="post">
        <button class="unsafebutton" name="DeleteALL">DELETE ALL LOG FILES</button>
+  </form>
       </td>
      <tr>
+  <form method="post">
       <td style="text-align: center;">
        <button class="unsafebutton" name="HALT">Shutdown System</button>
+  </form>
       </td>
      </tr>
     </tbody>
    </table>
-  </form>
  </body>
 </html>

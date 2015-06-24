@@ -1,6 +1,6 @@
 <?php
 
-    $zipname = 'adcs.zip';
+    $zipname = 'logfiles.zip';
     $zip = new ZipArchive;
     $zip->open($zipname, ZipArchive::CREATE);
     if ($handle = opendir('.')) {
@@ -15,8 +15,8 @@
     $zip->close();
 
     header('Content-Type: application/zip');
-    header("Content-Disposition: attachment; filename='adcs.zip'");
+    header("Content-Disposition: attachment; filename='logfiles.zip'");
     header('Content-Length: ' . filesize($zipname));
-    header("Location: adcs.zip");
+    header("Location: logfiles.zip");
 
     ?>

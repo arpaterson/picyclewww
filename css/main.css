@@ -15,7 +15,7 @@ h3 {
 }
 
 body {
- background-image: url("opuslogo.jpg");
+ background-image: url("/../img/opuslogo.jpg");
  background-repeat: no-repeat;
  background-attachment: floating;
  background-position: 5px 5px;

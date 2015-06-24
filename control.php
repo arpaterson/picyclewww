@@ -1,6 +1,6 @@
 <html>
  <head>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
  <?php 
   if (isset($_POST['StartALL']))
   {
